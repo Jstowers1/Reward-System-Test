@@ -12,7 +12,8 @@ function priceCheck($productName, $conn){
     $price = 30;//intval($conn->query("SELECT price FROM products WHERE name = '$productName'")[0]);
     $balance = 40;//intval($conn->query("SELECT points FROM users WHERE username = '$name'")[0]);
     if($balance > $price){
-        $conn->query("UPDATE users SET points = $balance - $price WHERE username = '$name");
+        $newBal = $balance - $price;
+        $conn->query("UPDATE users SET points = $newBal WHERE username = '$name");
         echo("Redeemed!");
         return true;
     } else {
